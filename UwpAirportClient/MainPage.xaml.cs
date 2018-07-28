@@ -26,5 +26,46 @@ namespace UwpAirportClient
         {
             this.InitializeComponent();
         }
+
+        private void TicketClick(object sender, RoutedEventArgs e)
+        {
+            Ticketbtn.Content = "Hello UWP!";
+        }
+
+        private void FlightsClick(object sender, RoutedEventArgs e)
+        {
+            Ticketbtn.Content = "Hello UWP!";
+            Frame.Navigate(typeof(Tickets));
+        }
+
+        private void StewardessesClick(object sender, RoutedEventArgs e)
+        {
+            Ticketbtn.Content = "Hello UWP!";
+        }
+
+        private void PilotsClick(object sender, RoutedEventArgs e)
+        {
+            Ticketbtn.Content = "Hello UWP!";
+        }
+
+        private void CrewsClick(object sender, RoutedEventArgs e)
+        {
+            Ticketbtn.Content = "Hello UWP!";
+        }
+
+        private void PlanetypesClick(object sender, RoutedEventArgs e)
+        {
+            Ticketbtn.Content = "Hello UWP!";
+        }
+
+        private void PlanesClick(object sender, RoutedEventArgs e)
+        {
+            Ticketbtn.Content = "Hello UWP!";
+        }
+
+        private void DeparturesClick(object sender, RoutedEventArgs e)
+        {
+            Ticketbtn.Content = "Hello UWP!";
+        }
     }
 }
