@@ -29,13 +29,12 @@ namespace UwpAirportClient
 
         private void TicketClick(object sender, RoutedEventArgs e)
         {
-            Ticketbtn.Content = "Hello UWP!";
+            Frame.Navigate(typeof(Tickets));
         }
 
         private void FlightsClick(object sender, RoutedEventArgs e)
         {
-            Ticketbtn.Content = "Hello UWP!";
-            Frame.Navigate(typeof(Tickets));
+            Frame.Navigate(typeof(Planetypes));
         }
 
         private void StewardessesClick(object sender, RoutedEventArgs e)

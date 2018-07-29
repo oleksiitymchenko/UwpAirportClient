@@ -107,6 +107,9 @@
     <Compile Include="Models\PlaneTypeDTO.cs" />
     <Compile Include="Models\StewardessDTO.cs" />
     <Compile Include="Models\TicketDTO.cs" />
+    <Compile Include="Planetypes.xaml.cs">
+      <DependentUpon>Planetypes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GenericService.cs" />
     <Compile Include="Tickets.xaml.cs">
@@ -138,6 +141,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Planetypes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tickets.xaml">
       <SubType>Designer</SubType>
