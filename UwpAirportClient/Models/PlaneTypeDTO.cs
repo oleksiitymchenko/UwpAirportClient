@@ -11,5 +11,10 @@ namespace UwpAirportClient.Models
         public int Places { get; set; }
 
         public double Carrying { get; set; }
+
+        public override string ToString()
+        {
+            return $"Model: {Model}, Places: {Places}";
+        }
     }
 }

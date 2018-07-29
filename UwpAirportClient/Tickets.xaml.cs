@@ -24,7 +24,7 @@ namespace UwpAirportClient
     {
         public ObservableCollection<TicketDTO> ticketList = new ObservableCollection<TicketDTO>();
 
-        public double height =>Window.Current.Bounds.Height;
+        public double height =>Window.Current.Bounds.Height-50;
         public Thickness marginCreate => new  Thickness(Window.Current.Bounds.Width-210,10,10,10);
 
         private GenericService<TicketDTO> service = new GenericService<TicketDTO>(new System.Net.Http.HttpClient(),Url.Value+"Tickets");

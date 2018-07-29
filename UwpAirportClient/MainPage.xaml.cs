@@ -32,7 +32,7 @@ namespace UwpAirportClient
             Frame.Navigate(typeof(Tickets));
         }
 
-        private void FlightsClick(object sender, RoutedEventArgs e)
+        private void PlanetypesClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Planetypes));
         }
@@ -52,14 +52,14 @@ namespace UwpAirportClient
             Ticketbtn.Content = "Hello UWP!";
         }
 
-        private void PlanetypesClick(object sender, RoutedEventArgs e)
+        private void FlightsClick(object sender, RoutedEventArgs e)
         {
             Ticketbtn.Content = "Hello UWP!";
         }
 
         private void PlanesClick(object sender, RoutedEventArgs e)
         {
-            Ticketbtn.Content = "Hello UWP!";
+            Frame.Navigate(typeof(Planes));
         }
 
         private void DeparturesClick(object sender, RoutedEventArgs e)
