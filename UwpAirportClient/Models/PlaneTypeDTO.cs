@@ -2,7 +2,7 @@
 
 namespace UwpAirportClient.Models
 {
-    public class PlaneTypeDTO
+    public class PlaneTypeDTO : IEntity
     {
         public int Id { get; set; }
 

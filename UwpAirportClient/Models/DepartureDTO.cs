@@ -2,7 +2,7 @@
 
 namespace UwpAirportClient.Models
 {
-    public class DepartureDTO
+    public class DepartureDTO:IEntity
     {
         public int Id { get; set; }
 

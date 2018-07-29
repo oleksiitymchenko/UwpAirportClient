@@ -1,7 +1,7 @@
 ﻿
 namespace UwpAirportClient.Models
 {
-    public class TicketDTO
+    public class TicketDTO : IEntity
     {
         public int Id { get; set; }
 

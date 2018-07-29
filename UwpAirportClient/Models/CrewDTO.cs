@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace UwpAirportClient.Models
 {
-    public class CrewDTO
+    public class CrewDTO:IEntity
     {
         [Required]
         public int Id { get; set; }
