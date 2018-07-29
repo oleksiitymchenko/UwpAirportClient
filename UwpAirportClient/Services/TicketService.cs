@@ -19,7 +19,7 @@ namespace UwpAirportClient.Services
             var client = new HttpClient();
 
             HttpResponseMessage response = await client.GetAsync(Url.Value + this._uriAdd);
-          //  if (response.StatusCode != HttpStatusCode.OK) return null;
+            if (response.StatusCode != HttpStatusCode.OK) return new List<TicketDTO>() { new TicketDTO() {FlightNumber="Sosi bibu",Price=66,Id=1 } };
 
             HttpContent content = response.Content;
             string Json = await content.ReadAsStringAsync();

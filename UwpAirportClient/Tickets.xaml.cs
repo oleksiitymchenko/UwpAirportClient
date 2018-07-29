@@ -26,6 +26,9 @@ namespace UwpAirportClient
     public sealed partial class Tickets : Page
     {
         public ObservableCollection<TicketDTO> ticketList = new ObservableCollection<TicketDTO>();
+
+        public double height =>Window.Current.Bounds.Height; 
+
         public Tickets()
         {
             getTickets();
@@ -48,6 +51,39 @@ namespace UwpAirportClient
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine(ticketList);
+        }
+
+        private async void itemsList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var ticket = (TicketDTO)e.ClickedItem;
+            SingleItem.Children.Clear();
+            var id = new TextBlock();
+            id.Text = "Ticket id:" + ticket.Id;
+            id.FontWeight = Windows.UI.Text.FontWeights.Bold;
+            id.Margin = new Windows.UI.Xaml.Thickness(0,100,10,10);
+            id.Width = 200;
+
+            var number = new TextBox();
+            number.Header = number.Header = "Flight number";
+            number.Text = number.Text = ticket.FlightNumber;
+            number.Width = 200;
+
+            var price = new TextBox();
+            price.Header = number.Header = "Price ";
+            price.Text = ticket.Price.ToString()+"$";
+            price.Width = 200;
+
+            var button = new Button();
+            button.Content = "Update item";
+
+            button.Click += (object sen, RoutedEventArgs evArgs) =>
+              {
+
+              };
+
+            SingleItem.Children.Add(id);
+            SingleItem.Children.Add(number);
+            SingleItem.Children.Add(price);
         }
     }
 }
