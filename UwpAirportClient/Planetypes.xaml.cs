@@ -295,13 +295,13 @@ namespace UwpAirportClient
 
             btnDelete.Click += async (object sen, RoutedEventArgs evArgs) =>
             {
-                planetypesList.Remove(planetype);
 
                 try
                 {
                     await service.DeleteAsync(planetype);
                 }
                 catch (Exception) { }
+                planetypesList.Remove(planetype);
                 UpdateList();
                 SingleItem.Children.Clear();
             };

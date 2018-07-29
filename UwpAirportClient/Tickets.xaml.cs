@@ -236,13 +236,12 @@ namespace UwpAirportClient
           
             btnDelete.Click += async (object sen, RoutedEventArgs evArgs)=>
             {
-                ticketList.Remove(ticket);
-
                 try
                 {
                     await service.DeleteAsync(ticket);
                 }
                 catch (Exception) { }
+                ticketList.Remove(ticket);
                 UpdateList();
                 SingleItem.Children.Clear();
             }; 
