@@ -40,7 +40,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="14" Text="{x:Bind FirstName}"/>
-                                <TextBlock FontSize="14" Text=" " />
+                                <TextBlock FontSize="14" Text="_" />
                                 <TextBlock FontSize="14" Text="{x:Bind LastName}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">

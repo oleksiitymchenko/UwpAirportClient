@@ -7,7 +7,7 @@
     xmlns:m="using:UwpAirportClient.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,6 +17,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+
         <Rectangle Fill="{StaticResource AppBarBackgroundThemeBrush}" Grid.Row="0" Grid.ColumnSpan="2"/>
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="0">
             <Button x:Name="BackButton" Click="Back_Click" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
@@ -35,17 +36,17 @@
                     <DataTemplate  x:DataType="m:StewardessDTO">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="16" Text="Pilot id:" FontWeight="Bold"/>
+                                <TextBlock FontSize="16" Text="Stewardess id:" FontWeight="Bold"/>
                                 <TextBlock FontSize="16" Text="{x:Bind Id}" FontWeight="Bold"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="14" Text="{x:Bind FirstName}"/>
-                                <TextBlock FontSize="14" Text=" " />
-                                <TextBlock FontSize="14" Text="{x:Bind LastName}" />
+                                <TextBlock FontSize="14" Text="_"/>
+                                    <TextBlock FontSize="14" Text="{x:Bind LastName}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="14" Text="Birthday: " />
-                                <TextBlock FontSize="14" Text="{x:Bind DateOfBirth}" />
+                                <TextBlock FontSize="14" Text="{x:Bind DateOfBirth.Substring(0,10)}"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

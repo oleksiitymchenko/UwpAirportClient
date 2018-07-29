@@ -116,7 +116,7 @@ namespace UwpAirportClient
             btnCreate.Click += async (object sen, RoutedEventArgs evArgs) =>
             {
                 var pilot = new StewardessDTO()
-                { FirstName = firstname.Text, LastName = lastname.Text, DateOfBirth = birthday.Date.Value.Date };
+                { FirstName = firstname.Text, LastName = lastname.Text, DateOfBirth = birthday.Date.Value.Date.ToString() };
                 try
                 {
                     await service.CreateAsync(pilot);
@@ -160,7 +160,7 @@ namespace UwpAirportClient
             var birthday = new CalendarDatePicker
             {
                 Header = "Experience",
-                Date = stewardess.DateOfBirth,
+                Date = DateTime.Parse(stewardess.DateOfBirth),
                 Width = 200,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
@@ -206,7 +206,7 @@ namespace UwpAirportClient
             btnUpdate.Click += async (object sen, RoutedEventArgs evArgs) =>
             {
                 var stewardessCreating = new StewardessDTO()
-                { Id = stewardess.Id, FirstName = firstname.Text, LastName = lastname.Text, DateOfBirth = birthday.Date.Value.Date};
+                { Id = stewardess.Id, FirstName = firstname.Text, LastName = lastname.Text, DateOfBirth = birthday.Date.Value.Date.ToString()};
 
                 int index = stewardessesList.ToList().FindIndex(t => t.Id == stewardess.Id);
                 stewardessesList.Insert(index, stewardessCreating);
