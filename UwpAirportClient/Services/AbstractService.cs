@@ -1,49 +1,60 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using UwpAirportClient.Models;
 
 namespace UwpAirportClient.Services
 {
-    public class AbstractService
+    public class AbstractService<TEntity> where TEntity : IEntity
     {
-        private readonly string _uriAdd = "Tickets";
-        private HttpClient client = new HttpClient();
-
-        public async Task<List<TicketDTO>> getAllAsync()
+        private HttpClient _client;
+        private string BasicUrl;
+        /// <summary>
+        /// basic url like : http://localhost:3445/api/Tickets
+        /// </summary>
+        /// <param name="basicUrl"></param>
+        public AbstractService(HttpClient client, string basicUrl)
         {
-            HttpResponseMessage response = await client.GetAsync(Url.Value + this._uriAdd);
+            this._client = client;
+            this.BasicUrl = basicUrl;
+        }
+
+        public virtual async Task<List<TEntity>> getAllAsync()
+        {
+            HttpResponseMessage response = await _client.GetAsync(BasicUrl);
 
             if (response.StatusCode != HttpStatusCode.OK) throw new HttpRequestException();
 
             HttpContent content = response.Content;
             string Json = await content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<List<TicketDTO>>(Json);
+            return JsonConvert.DeserializeObject<List<TEntity>>(Json);
         }
 
 
-        public async Task DeleteAsync(TicketDTO ticket)
+        public virtual async Task DeleteAsync(TEntity ticket)
         {
-            HttpResponseMessage response = await client.DeleteAsync(Url.Value + this._uriAdd + "/" + ticket.Id);
+            HttpResponseMessage response = await _client.DeleteAsync(BasicUrl + "/" + ticket.Id);
             if (response.StatusCode != HttpStatusCode.OK) throw new HttpRequestException();
         }
 
-        public async Task UpdateAsync(TicketDTO ticket)
+        public virtual async Task UpdateAsync(TEntity ticket)
         {
             var Json = JsonConvert.SerializeObject(ticket);
-            var response = await client.PutAsync(Url.Value + this._uriAdd + "/" + ticket.Id, new StringContent(Json, Encoding.UTF8, "application/json"));
+            var response = await _client.PutAsync(BasicUrl + "/" + ticket.Id, new StringContent(Json, Encoding.UTF8, "application/json"));
             if (response.StatusCode != HttpStatusCode.OK) throw new HttpRequestException();
         }
 
-        public async Task CreateAsync(TicketDTO ticket)
+        public virtual async Task CreateAsync(TEntity ticket)
         {
             var Json = JsonConvert.SerializeObject(ticket);
-            var response = await client.PostAsync(Url.Value + this._uriAdd, new StringContent(Json, Encoding.UTF8, "application/json"));
+            var response = await _client.PostAsync(BasicUrl, new StringContent(Json, Encoding.UTF8, "application/json"));
             if (response.StatusCode != HttpStatusCode.OK) throw new HttpRequestException();
         }
     }
-}
 }

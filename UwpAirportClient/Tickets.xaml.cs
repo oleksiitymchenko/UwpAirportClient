@@ -219,27 +219,30 @@ namespace UwpAirportClient
             btnUpdate.Click += async (object sen, RoutedEventArgs evArgs) =>
             {
                 var ticketUpdating = new TicketDTO()
-                {Id=ticket.Id, FlightNumber = number.Text, Price = double.Parse(price.Text) };
+                { Id = ticket.Id, FlightNumber = number.Text, Price = double.Parse(price.Text) };
+
+                int index = ticketList.ToList().FindIndex(t => t.Id == ticket.Id);
+                ticketList.Insert(index, ticketUpdating);
+              
                 try
                  {
                      await service.UpdateAsync(ticketUpdating);
                     }
                  catch (Exception) { }
 
-                 int index = ticketList.ToList().FindIndex(t=>t.Id==ticket.Id);
-                 ticketList.Insert(index, ticketUpdating);
                  UpdateList();
                  SingleItem.Children.Clear();
              };
           
             btnDelete.Click += async (object sen, RoutedEventArgs evArgs)=>
             {
+                ticketList.Remove(ticket);
+
                 try
                 {
                     await service.DeleteAsync(ticket);
                 }
                 catch (Exception) { }
-                ticketList.Remove(ticket);
                 UpdateList();
                 SingleItem.Children.Clear();
             }; 
