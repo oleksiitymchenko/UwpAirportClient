@@ -23,33 +23,33 @@ namespace UwpAirportClient
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Pilots : Page
+    public sealed partial class Stewardesses : Page
     {
-        public ObservableCollection<PilotDTO> pilotsList = new ObservableCollection<PilotDTO>();
+        public ObservableCollection<StewardessDTO> stewardessesList = new ObservableCollection<StewardessDTO>();
 
         public double height => Window.Current.Bounds.Height;
         public Thickness marginCreate => new Thickness(Window.Current.Bounds.Width - 210, 10, 10, 10);
 
-        private GenericService<PilotDTO> service = new GenericService<PilotDTO>(new System.Net.Http.HttpClient(), Url.Value + "Pilots");
+        private GenericService<StewardessDTO> service = new GenericService<StewardessDTO>(new System.Net.Http.HttpClient(), Url.Value + "Stewardesses");
 
-        public Pilots()
+        public Stewardesses()
         {
             UpdateList();
             this.InitializeComponent();
-            this.Loaded += Pilots_Loaded;
+            this.Loaded += Stewardesses_Load;
         }
 
-        private void Pilots_Loaded(object sender, RoutedEventArgs e)
+        private void Stewardesses_Load(object sender, RoutedEventArgs e)
         {
             UpdateList();
         }
 
         private async void UpdateList()
         {
-            pilotsList.Clear();
+            stewardessesList.Clear();
             try
             {
-                (await service.getAllAsync()).ForEach(o => pilotsList.Add(o));
+                (await service.getAllAsync()).ForEach(o => stewardessesList.Add(o));
             }
             catch (Exception) { };
         }
@@ -60,7 +60,7 @@ namespace UwpAirportClient
                 Frame.GoBack();
         }
 
-        private (Button, TextBox, TextBox, TextBox) RenderCreate()
+        private (Button, TextBox, TextBox, CalendarDatePicker) RenderCreate()
         {
             SingleItem.Children.Clear();
 
@@ -82,33 +82,14 @@ namespace UwpAirportClient
                 HorizontalAlignment = HorizontalAlignment.Center
             };
 
-            var expirience = new TextBox
+            var birthday = new CalendarDatePicker
             {
-                Header = "Carrying",
-                PlaceholderText = "Carrying",
+                Header = "Birthday date",
+                PlaceholderText = "Birthday",
                 Width = 200,
                 Margin = new Thickness(0, 10, 0, 0),
                 HorizontalAlignment = HorizontalAlignment.Center
             };
-
-            expirience.KeyDown += (object obj, KeyRoutedEventArgs evArgs) =>
-            {
-                if (evArgs.Key.ToString().Equals("Back"))
-                {
-                    evArgs.Handled = false;
-                    return;
-                }
-                for (int i = 0; i < 10; i++)
-                {
-                    if (evArgs.Key.ToString() == string.Format("Number{0}", i))
-                    {
-                        evArgs.Handled = false;
-                        return;
-                    }
-                }
-                evArgs.Handled = true;
-            };
-
 
             var btnCreate = new Button
             {
@@ -119,9 +100,9 @@ namespace UwpAirportClient
             };
             SingleItem.Children.Add(firstname);
             SingleItem.Children.Add(lastname);
-            SingleItem.Children.Add(expirience);
+            SingleItem.Children.Add(birthday);
             SingleItem.Children.Add(btnCreate);
-            return (btnCreate, firstname, lastname, expirience);
+            return (btnCreate, firstname, lastname, birthday);
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
@@ -130,31 +111,31 @@ namespace UwpAirportClient
             var btnCreate = turple.Item1;
             var firstname = turple.Item2;
             var lastname = turple.Item3;
-            var expirience = turple.Item4;
+            var birthday = turple.Item4;
 
             btnCreate.Click += async (object sen, RoutedEventArgs evArgs) =>
             {
-                var pilot = new PilotDTO()
-                { FirstName = firstname.Text, LastName = lastname.Text, Experience = int.Parse(expirience.Text) };
+                var pilot = new StewardessDTO()
+                { FirstName = firstname.Text, LastName = lastname.Text, DateOfBirth = birthday.Date.Value.Date };
                 try
                 {
                     await service.CreateAsync(pilot);
                 }
                 catch (Exception) { }
 
-                pilotsList.Add(pilot);
+                stewardessesList.Add(pilot);
                 UpdateList();
                 SingleItem.Children.Clear();
             };
         }
 
-        private (Button, Button, TextBox, TextBox, TextBox, PilotDTO) RenderDetail(ItemClickEventArgs e)
+        private (Button, Button, TextBox, TextBox, CalendarDatePicker, StewardessDTO) RenderDetail(ItemClickEventArgs e)
         {
-            var pilot = (PilotDTO)e.ClickedItem;
+            var stewardess = (StewardessDTO)e.ClickedItem;
             SingleItem.Children.Clear();
 
             var id = new TextBlock();
-            id.Text = "Pilot id:" + pilot.Id;
+            id.Text = "Pilot id:" + stewardess.Id;
             id.FontWeight = Windows.UI.Text.FontWeights.Bold;
             id.Margin = new Thickness(0, 100, 10, 10);
             id.Width = 200;
@@ -162,7 +143,7 @@ namespace UwpAirportClient
             var firstname = new TextBox
             {
                 Header = "FirstName",
-                Text = pilot.FirstName,
+                Text = stewardess.FirstName,
                 Width = 200,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
@@ -171,36 +152,18 @@ namespace UwpAirportClient
             var lastname = new TextBox
             {
                 Header = "Lastname",
-                Text = pilot.LastName,
+                Text = stewardess.LastName,
                 Width = 200,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
 
-            var experience = new TextBox
+            var birthday = new CalendarDatePicker
             {
                 Header = "Experience",
-                Text = pilot.Experience.ToString(),
+                Date = stewardess.DateOfBirth,
                 Width = 200,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
-            experience.KeyDown += (object obj, KeyRoutedEventArgs evArgs) =>
-            {
-                if (evArgs.Key.ToString().Equals("Back"))
-                {
-                    evArgs.Handled = false;
-                    return;
-                }
-                for (int i = 0; i < 10; i++)
-                {
-                    if (evArgs.Key.ToString() == string.Format("Number{0}", i))
-                    {
-                        evArgs.Handled = false;
-                        return;
-                    }
-                }
-                evArgs.Handled = true;
-            };
-
 
             var btnUpdate = new Button
             {
@@ -222,12 +185,12 @@ namespace UwpAirportClient
             SingleItem.Children.Add(id);
             SingleItem.Children.Add(firstname);
             SingleItem.Children.Add(lastname);
-            SingleItem.Children.Add(experience);
+            SingleItem.Children.Add(birthday);
             buttonsStack.Children.Add(btnUpdate);
             buttonsStack.Children.Add(btnDelete);
             SingleItem.Children.Add(buttonsStack);
 
-            return (btnUpdate, btnDelete, firstname, lastname, experience, pilot);
+            return (btnUpdate, btnDelete, firstname, lastname, birthday, stewardess);
         }
 
         private void itemsList_ItemClick(object sender, ItemClickEventArgs e)
@@ -237,20 +200,20 @@ namespace UwpAirportClient
             var btnDelete = turple.Item2;
             var firstname = turple.Item3;
             var lastname = turple.Item4;
-            var experience = turple.Item5;
-            var pilot = turple.Item6;
+            var birthday = turple.Item5;
+            var stewardess = turple.Item6;
 
             btnUpdate.Click += async (object sen, RoutedEventArgs evArgs) =>
             {
-                var pilotCreating = new PilotDTO()
-                { Id = pilot.Id, FirstName = firstname.Text, LastName = lastname.Text, Experience = int.Parse(experience.Text) };
+                var stewardessCreating = new StewardessDTO()
+                { Id = stewardess.Id, FirstName = firstname.Text, LastName = lastname.Text, DateOfBirth = birthday.Date.Value.Date};
 
-                int index = pilotsList.ToList().FindIndex(t => t.Id == pilot.Id);
-                pilotsList.Insert(index, pilotCreating);
+                int index = stewardessesList.ToList().FindIndex(t => t.Id == stewardess.Id);
+                stewardessesList.Insert(index, stewardessCreating);
 
                 try
                 {
-                    await service.UpdateAsync(pilotCreating);
+                    await service.UpdateAsync(stewardessCreating);
                 }
                 catch (Exception) { }
 
@@ -262,10 +225,10 @@ namespace UwpAirportClient
             {
                 try
                 {
-                    await service.DeleteAsync(pilot);
+                    await service.DeleteAsync(stewardess);
                 }
                 catch (Exception) { }
-                pilotsList.Remove(pilot);
+                stewardessesList.Remove(stewardess);
                 UpdateList();
                 SingleItem.Children.Clear();
             };
