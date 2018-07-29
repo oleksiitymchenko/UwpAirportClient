@@ -107,6 +107,9 @@
     <Compile Include="Models\PlaneTypeDTO.cs" />
     <Compile Include="Models\StewardessDTO.cs" />
     <Compile Include="Models\TicketDTO.cs" />
+    <Compile Include="Pilots.xaml.cs">
+      <DependentUpon>Pilots.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Planetypes.xaml.cs">
       <DependentUpon>Planetypes.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pilots.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Planetypes.xaml">
       <SubType>Designer</SubType>
