@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UwpAirportClient.Models;
+using UwpAirportClient.Services;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +25,29 @@ namespace UwpAirportClient
     /// </summary>
     public sealed partial class Tickets : Page
     {
+        public ObservableCollection<TicketDTO> ticketList = new ObservableCollection<TicketDTO>();
         public Tickets()
         {
+            getTickets();
             this.InitializeComponent();
+            this.Loaded += Tickets_Loaded;
+        }
+
+        private void Tickets_Loaded(object sender, RoutedEventArgs e)
+        {
+            getTickets();
+           // ticketsList.ItemsSource = this.ticketList;
+        }
+
+        private async void getTickets()
+        {
+            var serv = new TicketService();
+            (await serv.getAllAsync()).ForEach(o=>ticketList.Add(o));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(ticketList);
         }
     }
 }
