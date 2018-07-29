@@ -8,5 +8,10 @@ namespace UwpAirportClient.Models
         public double Price { get; set; }
 
         public string FlightNumber { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id:{Id},Number:{FlightNumber}";
+        }
     }
 }

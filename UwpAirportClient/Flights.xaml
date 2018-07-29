@@ -36,7 +36,7 @@
                     <DataTemplate  x:DataType="m:FlightDTO">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="16" Text="Departure id:" FontWeight="Bold"/>
+                                <TextBlock FontSize="16" Text="Flight id:" FontWeight="Bold"/>
                                 <TextBlock FontSize="16" Text="{x:Bind Id}" FontWeight="Bold"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -63,7 +63,8 @@
         </StackPanel>
 
         <Rectangle Fill = "{StaticResource SystemControlBackgroundChromeMediumLowBrush}" Grid.Column = "1" Grid.Row = "1" Grid.ColumnSpan = "2" />
-        <StackPanel Grid.Column="1"  Grid.Row="1" x:Name="SingleItem">
+            <StackPanel  Grid.Column="1"  Grid.Row="1" x:Name="SingleItem">
+
         </StackPanel>
     </Grid>
 </Page>
