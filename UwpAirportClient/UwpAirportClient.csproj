@@ -95,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Crews.xaml.cs">
+      <DependentUpon>Crews.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DateFormatter.cs" />
     <Compile Include="Departures.xaml.cs">
       <DependentUpon>Departures.xaml</DependentUpon>
@@ -154,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Crews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Departures.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
