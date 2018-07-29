@@ -27,7 +27,7 @@ namespace UwpAirportClient
         public double height =>Window.Current.Bounds.Height;
         public Thickness marginCreate => new  Thickness(Window.Current.Bounds.Width-210,10,10,10);
 
-        private TicketService service = new TicketService();
+        private GenericService<TicketDTO> service = new GenericService<TicketDTO>(new System.Net.Http.HttpClient(),Url.Value+"Tickets");
 
         public Tickets()
         {

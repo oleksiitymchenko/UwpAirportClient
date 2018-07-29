@@ -10,7 +10,7 @@ using UwpAirportClient.Models;
 
 namespace UwpAirportClient.Services
 {
-    public class AbstractService<TEntity> where TEntity : IEntity
+    public class GenericService<TEntity> where TEntity : IEntity
     {
         private HttpClient _client;
         private string BasicUrl;
@@ -18,7 +18,7 @@ namespace UwpAirportClient.Services
         /// basic url like : http://localhost:3445/api/Tickets
         /// </summary>
         /// <param name="basicUrl"></param>
-        public AbstractService(HttpClient client, string basicUrl)
+        public GenericService(HttpClient client, string basicUrl)
         {
             this._client = client;
             this.BasicUrl = basicUrl;
