@@ -30,21 +30,22 @@
                                 ScrollViewer.VerticalScrollMode="Enabled"
                                 ScrollViewer.VerticalScrollBarVisibility="Hidden"  
                       SelectionMode = "None" IsItemClickEnabled = "True" ItemClick="itemsList_ItemClick"
-                      ItemsSource="{x:Bind planetypesList}">
+                      ItemsSource="{x:Bind pilotsList}">
                 <ListView.ItemTemplate>
-                    <DataTemplate  x:DataType="m:PlaneTypeDTO">
+                    <DataTemplate  x:DataType="m:PilotDTO">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="16" Text="Planetype id:" FontWeight="Bold"/>
+                                <TextBlock FontSize="16" Text="Pilot id:" FontWeight="Bold"/>
                                 <TextBlock FontSize="16" Text="{x:Bind Id}" FontWeight="Bold"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="14" Text="Model: " />
-                                <TextBlock FontSize="14" Text="{x:Bind Model}" />
+                                <TextBlock FontSize="14" Text="{x:Bind FirstName}"/>
+                                <TextBlock FontSize="14" Text=" " />
+                                <TextBlock FontSize="14" Text="{x:Bind LastName}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="14" Text="Places: " />
-                                <TextBlock FontSize="14" Text="{x:Bind Places}" />
+                                <TextBlock FontSize="14" Text="Experience: " />
+                                <TextBlock FontSize="14" Text="{x:Bind Experience}" />
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>
