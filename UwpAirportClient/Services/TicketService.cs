@@ -33,5 +33,19 @@ namespace UwpAirportClient.Services
             HttpResponseMessage response = await client.DeleteAsync(Url.Value + this._uriAdd + "/" + ticket.Id);
             if (response.StatusCode != HttpStatusCode.OK) throw new HttpRequestException();
         }
+
+        public async Task UpdateAsync(TicketDTO ticket)
+        {
+            var Json = JsonConvert.SerializeObject(ticket);
+            var response = await client.PutAsync(Url.Value + this._uriAdd + "/" + ticket.Id,new StringContent(Json, Encoding.UTF8, "application/json"));
+            if (response.StatusCode != HttpStatusCode.OK) throw new HttpRequestException();
+        }
+
+        public async Task CreateAsync(TicketDTO ticket)
+        {
+            var Json = JsonConvert.SerializeObject(ticket);
+            var response = await client.PostAsync(Url.Value + this._uriAdd, new StringContent(Json, Encoding.UTF8, "application/json"));
+            if (response.StatusCode != HttpStatusCode.OK) throw new HttpRequestException();
+        }
     }
 }

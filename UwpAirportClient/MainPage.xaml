@@ -10,14 +10,14 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center">
-            <Button x:Name="Ticketbtn" Content="Tickets" Height="30" HorizontalAlignment="Stretch" Margin="10 10 10 0"  Click="TicketClick"/>
-            <Button x:Name="Flightbtn" Content="Flights" Height="30" HorizontalAlignment="Stretch" Margin="10 10 10 0" Click="FlightsClick"/>
-            <Button x:Name="Stewardessbtn" Content="Stewardesses" Height="30" HorizontalAlignment="Stretch" Margin="10 10 10 0" Click="StewardessesClick"/>
-            <Button x:Name="Pilotbtn" Content="Pilots" Height="30" HorizontalAlignment="Stretch" Margin="10 10 10 0" Click="PilotsClick"/>
-            <Button x:Name="Crewbtn" Content="Crews" Height="30" HorizontalAlignment="Stretch" Margin="10 10 10 0" Click="CrewsClick"/>
-            <Button x:Name="Planetypebtn" Content="Plane types" Height="30" HorizontalAlignment="Stretch" Margin="10 10 10 0" Click="PlanetypesClick"/>
-            <Button x:Name="Planebtn" Content="Planes" Height="30" HorizontalAlignment="Stretch" Margin="10 10 10 0" Click="PlanesClick"/>
-            <Button x:Name="Departurebtn" Content="Departures" Height="30" HorizontalAlignment="Stretch" Margin="10 10 10 0 " Click="DeparturesClick"/>
+            <Button x:Name="Ticketbtn" Content="Tickets" Height="40" HorizontalAlignment="Stretch" Margin="20 10 20 0"  Click="TicketClick"/>
+            <Button x:Name="Flightbtn" Content="Flights" Height="40" HorizontalAlignment="Stretch" Margin="20 10 20 0" Click="FlightsClick"/>
+            <Button x:Name="Stewardessbtn" Content="Stewardesses" Height="40" HorizontalAlignment="Stretch" Margin="20 10 20 0" Click="StewardessesClick"/>
+            <Button x:Name="Pilotbtn" Content="Pilots" Height="40" HorizontalAlignment="Stretch" Margin="20 10 20 0" Click="PilotsClick"/>
+            <Button x:Name="Crewbtn" Content="Crews" Height="40" HorizontalAlignment="Stretch" Margin="20 10 20 0" Click="CrewsClick"/>
+            <Button x:Name="Planetypebtn" Content="Plane types" Height="40" HorizontalAlignment="Stretch" Margin="20 10 20 0" Click="PlanetypesClick"/>
+            <Button x:Name="Planebtn" Content="Planes" Height="40" HorizontalAlignment="Stretch" Margin="20 10 20 0" Click="PlanesClick"/>
+            <Button x:Name="Departurebtn" Content="Departures" Height="40" HorizontalAlignment="Stretch" Margin="20 10 20 0 " Click="DeparturesClick"/>
         </StackPanel>
     </Grid>
 </Page>

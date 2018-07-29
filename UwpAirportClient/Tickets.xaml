@@ -19,17 +19,14 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Fill="{StaticResource AppBarBackgroundThemeBrush}" Grid.Row="0" Grid.ColumnSpan="2"/>
-        <StackPanel Grid.ColumnSpan="2" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="0">
             <Button x:Name="BackButton" Click="Back_Click" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
 
-            <Button Content="Create new" Click="Create_Click"/>
+            <Button Content="Create new" Click="Create_Click" Width="150" Margin="{x:Bind marginCreate}"/>
         </StackPanel>
-        
-        
-        
+
+
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <TextBlock Text="Tickets page"/>
-            <TextBlock Text="{x:Bind ticketList.Count}"/>
             <ListView Grid.ColumnSpan="3" Grid.Row="1" x:Name="items"  Height="{x:Bind height}"  
                                 ScrollViewer.VerticalScrollMode="Enabled"
                                 ScrollViewer.VerticalScrollBarVisibility="Hidden"  
@@ -42,15 +39,16 @@
                                         <TextBlock FontSize="16" Text="Ticket id:" FontWeight="Bold"/>
                                         <TextBlock FontSize="16" Text="{x:Bind Id}" FontWeight="Bold"/>
                                     </StackPanel>
-                                    <TextBlock FontSize="16" Text="{x:Bind FlightNumber}" />
-                                    <TextBlock FontSize="16" Text="{x:Bind Price}" />
+                                    <TextBlock FontSize="14" Text="{x:Bind FlightNumber}" />
+                                    <TextBlock FontSize="14" Text="{x:Bind Price}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
         </StackPanel>
-        <StackPanel  Grid.Column="1"  Grid.Row="1" x:Name="SingleItem">
-            
+
+        <Rectangle Fill = "{StaticResource SystemControlBackgroundChromeMediumLowBrush}" Grid.Column = "1" Grid.Row = "1" Grid.ColumnSpan = "2" />
+        <StackPanel Grid.Column="1"  Grid.Row="1" x:Name="SingleItem">
         </StackPanel>
     </Grid>
 </Page>
