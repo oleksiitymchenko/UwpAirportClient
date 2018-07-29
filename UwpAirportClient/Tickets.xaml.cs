@@ -27,30 +27,43 @@ namespace UwpAirportClient
     {
         public ObservableCollection<TicketDTO> ticketList = new ObservableCollection<TicketDTO>();
 
-        public double height =>Window.Current.Bounds.Height; 
+        public double height =>Window.Current.Bounds.Height;
+
+        private TicketService service = new TicketService();
 
         public Tickets()
         {
-            getTickets();
+            UpdateList();
             this.InitializeComponent();
             this.Loaded += Tickets_Loaded;
         }
 
         private void Tickets_Loaded(object sender, RoutedEventArgs e)
         {
-            getTickets();
+            UpdateList();
            // ticketsList.ItemsSource = this.ticketList;
         }
 
-        private async void getTickets()
+        private async void UpdateList()
         {
-            var serv = new TicketService();
-            (await serv.getAllAsync()).ForEach(o=>ticketList.Add(o));
+            ticketList.Clear();
+            (await service.getAllAsync()).ForEach(o=>ticketList.Add(o));
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+                Frame.GoBack();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine(ticketList);
+        }
+
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private async void itemsList_ItemClick(object sender, ItemClickEventArgs e)
@@ -64,26 +77,41 @@ namespace UwpAirportClient
             id.Width = 200;
 
             var number = new TextBox();
-            number.Header = number.Header = "Flight number";
-            number.Text = number.Text = ticket.FlightNumber;
+            number.Header = "Flight number";
+            number.Text = ticket.FlightNumber;
             number.Width = 200;
 
             var price = new TextBox();
-            price.Header = number.Header = "Price ";
+            price.Header = "Price ";
             price.Text = ticket.Price.ToString()+"$";
             price.Width = 200;
 
-            var button = new Button();
-            button.Content = "Update item";
+            var btnUpdate = new Button();
+            btnUpdate.Content = "Update item";
+            btnUpdate.Width = 95;
 
-            button.Click += (object sen, RoutedEventArgs evArgs) =>
-              {
+            var btnDelete = new Button();
+            btnDelete.Content = "Delete item";
+            btnDelete.Width = 95;
 
-              };
+            var buttonsStack = new StackPanel();
+            buttonsStack.Orientation = Orientation.Horizontal;
+
+            btnDelete.Click += async (object sen, RoutedEventArgs eva)=>
+            {
+                await service.DeleteAsync(ticket);
+                ticketList.Remove(ticket);
+                UpdateList();
+                SingleItem.Children.Clear();
+
+            };
 
             SingleItem.Children.Add(id);
             SingleItem.Children.Add(number);
             SingleItem.Children.Add(price);
+            buttonsStack.Children.Add(btnUpdate);
+            buttonsStack.Children.Add(btnDelete);
+            SingleItem.Children.Add(buttonsStack);
         }
     }
 }

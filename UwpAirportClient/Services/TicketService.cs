@@ -13,18 +13,25 @@ namespace UwpAirportClient.Services
     public class TicketService
     {
         private readonly string _uriAdd = "Tickets";
+        private HttpClient client = new HttpClient();
 
         public async Task<List<TicketDTO>> getAllAsync()
         {
-            var client = new HttpClient();
-
             HttpResponseMessage response = await client.GetAsync(Url.Value + this._uriAdd);
-            if (response.StatusCode != HttpStatusCode.OK) return new List<TicketDTO>() { new TicketDTO() {FlightNumber="Sosi bibu",Price=66,Id=1 } };
+
+            if (response.StatusCode != HttpStatusCode.OK) throw new HttpRequestException();
 
             HttpContent content = response.Content;
             string Json = await content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<List<TicketDTO>>(Json);
+        }
+        
+
+        public async Task DeleteAsync(TicketDTO ticket)
+        {
+            HttpResponseMessage response = await client.DeleteAsync(Url.Value + this._uriAdd + "/" + ticket.Id);
+            if (response.StatusCode != HttpStatusCode.OK) throw new HttpRequestException();
         }
     }
 }
