@@ -54,7 +54,7 @@ namespace UwpAirportClient
 
         private void FlightsClick(object sender, RoutedEventArgs e)
         {
-            Ticketbtn.Content = "Hello UWP!";
+            Frame.Navigate(typeof(Flights));
         }
 
         private void PlanesClick(object sender, RoutedEventArgs e)

@@ -11,5 +11,10 @@ namespace UwpAirportClient.Models
         public int PilotId { get; set; }
         [Required]
         public List<int> StewardressIds { get; set; }
+
+        public override string ToString()
+        {
+            return $"Pilot id:{PilotId}, Stewardesses:{StewardressIds.Count}";
+        }
     }
 }

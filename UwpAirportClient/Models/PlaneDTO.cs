@@ -13,5 +13,10 @@ namespace UwpAirportClient.Models
         public string Created { get; set; }
 
         public string LifeTime { get; set; }
+
+        public override string ToString()
+        {
+            return $"Name: {Name}, Type id: {TypePlaneId}";
+        }
     }
 }
